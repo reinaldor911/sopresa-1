@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>¿Volvemos a Intentarlo?</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#fff0f6;
+    overflow-x:hidden;
+    color:#fff;
+}
+
+/* FONDO */
+
+body::before{
+    content:'';
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+    radial-gradient(circle at top,#ff5fa2,#1f1f1f);
+    z-index:-2;
+}
+
+/* CORAZONES */
+
+.hearts{
+    position:fixed;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.hearts span{
+    position:absolute;
+    bottom:-100px;
+    color:#ff77aa;
+    font-size:20px;
+    animation:float 10s linear infinite;
+    opacity:.7;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0) scale(1);
+    }
+    100%{
+        transform:translateY(-120vh) scale(1.5);
+    }
+}
+
+/* CAJA */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    padding:20px;
+}
+
+.box{
+    width:320px;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 20px 40px rgba(0,0,0,.4);
+    cursor:pointer;
+    transition:.5s;
+    position:relative;
+}
+
+.box:hover{
+    transform:scale(1.03);
+}
+
+.ribbon{
+    position:absolute;
+    width:100%;
+    height:20px;
+    background:#ff2d7a;
+    top:80px;
+}
+
+.ribbon-vertical{
+    position:absolute;
+    width:20px;
+    height:100%;
+    background:#ff2d7a;
+    left:50px;
+}
+
+.box img{
+    width:100%;
+    display:block;
+}
+
+.box-content{
+    padding:20px;
+    text-align:center;
+    color:#111;
+}
+
+.box-content h1{
+    color:#111;
+    font-size:38px;
+    line-height:1.2;
+    margin-top:15px;
+}
+
+/* TEXTO */
+
+.open-text{
+    margin-top:30px;
+    font-size:20px;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%{opacity:.5;}
+    50%{opacity:1;}
+    100%{opacity:.5;}
+}
+
+/* ALBUM */
+
+.album{
+    width:100%;
+    max-width:900px;
+    margin:auto;
+    padding:80px 20px;
+    display:none;
+}
+
+.card{
+    background:#111;
+    border-radius:25px;
+    overflow:hidden;
+    margin-bottom:60px;
+    opacity:0;
+    transform:translateY(100px);
+    transition:1s;
+    box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+.card.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.card img{
+    width:100%;
+    display:block;
+}
+
+.card-text{
+    padding:30px;
+    text-align:center;
+}
+
+.card-text h2{
+    font-size:28px;
+    margin-bottom:15px;
+    color:#ff77aa;
+}
+
+.card-text p{
+    font-size:18px;
+    line-height:1.7;
+}
+
+/* FINAL */
+
+.final-message{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px;
+}
+
+.final-message h1{
+    font-size:45px;
+    line-height:1.5;
+    color:white;
+    animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .box{
+        width:90%;
+    }
+
+    .box-content h1{
+        font-size:28px;
+    }
+
+    .card-text h2{
+        font-size:22px;
+    }
+
+    .card-text p{
+        font-size:16px;
+    }
+
+    .final-message h1{
+        font-size:30px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hearts">
+    <span style="left:10%">❤</span>
+    <span style="left:20%; animation-delay:2s;">❤</span>
+    <span style="left:35%; animation-delay:4s;">❤</span>
+    <span style="left:50%; animation-delay:1s;">❤</span>
+    <span style="left:70%; animation-delay:3s;">❤</span>
+    <span style="left:85%; animation-delay:5s;">❤</span>
+</div>
+
+<!-- CAJA -->
+
+<section class="hero">
+
+    <div class="box" onclick="openAlbum()">
+
+        <div class="ribbon"></div>
+        <div class="ribbon-vertical"></div>
+
+        <img src="https://i.imgur.com/yQ0Wm6W.png">
+
+        <div class="box-content">
+            <h1>¿Volvemos<br>a intentarlo?</h1>
+        </div>
+
+    </div>
+
+    <div class="open-text">
+        Toca la caja ✨
+    </div>
+
+</section>
+
+<!-- ALBUM -->
+
+<section class="album" id="album">
+
+    <div class="card">
+        <img src="https://i.imgur.com/0R8FQ7I.jpeg">
+        <div class="card-text">
+            <h2>Quiero hablar contigo...</h2>
+            <p>
+                No quiero fingir que no me duele perderte.
+                Aún hay algo dentro de mí que sigue pensando en ti.
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://i.imgur.com/l4m8MHE.jpeg">
+        <div class="card-text">
+            <h2>Te extraño...</h2>
+            <p>
+                Extraño tu voz, tu presencia y la forma
+                en que hacías especial cualquier momento.
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://i.imgur.com/3M4wM8R.jpeg">
+        <div class="card-text">
+            <h2>Intentarlo una vez más</h2>
+            <p>
+                Quisiera luchar por lo nuestro,
+                porque siento que todavía vale la pena.
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="https://i.imgur.com/8xP7XQw.jpeg">
+        <div class="card-text">
+            <h2>Perdón...</h2>
+            <p>
+                A veces el orgullo habló más fuerte,
+                pero nunca dejé de sentir algo real por ti.
+            </p>
+        </div>
+    </div>
+
+</section>
+
+<!-- FINAL -->
+
+<section class="final-message">
+
+    <h1>
+        Tal vez entendí demasiado tarde cuánto valías... 💔<br><br>
+
+        Pero cada recuerdo contigo sigue viviendo dentro de mí.<br><br>
+
+        Y aunque el tiempo pase,<br>
+        siempre habrá una parte de mí arrepentida<br>
+        por haberte perdido...
+    </h1>
+
+</section>
+
+<script>
+
+function openAlbum(){
+
+    document.getElementById("album").style.display="block";
+
+    window.scrollTo({
+        top:window.innerHeight,
+        behavior:"smooth"
+    });
+
+}
+
+/* ANIMACION AL HACER SCROLL */
+
+const cards=document.querySelectorAll(".card");
+
+window.addEventListener("scroll",()=>{
+
+    cards.forEach(card=>{
+
+        const top=card.getBoundingClientRect().top;
+
+        if(top < window.innerHeight - 100){
+
+            card.classList.add("show");
+
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
